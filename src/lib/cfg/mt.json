@@ -1,0 +1,15 @@
+{
+    "root":"/home/lzanella/datasets/",
+    "train":
+    {
+        "mt":"./data/mt.train"
+    },
+    "test_emb":
+    {
+        "mt":"./data/mt.train"
+    },
+    "test":
+    {
+        "mt":"./data/mt.train"
+    }
+}
