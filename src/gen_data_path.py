@@ -68,6 +68,25 @@ def gen_data_path_mot17_emb(root_path):
     f.close()
 
 
+def gen_data_path_mt_train(root_path):
+    label_path = 'MT/labels_with_ids/train/'
+    real_path = os.path.join(root_path, label_path)
+    seq_names = [s for s in sorted(os.listdir(real_path))]
+    with open('/home/lzanella/projects/FairMOT/src/data/mt.train', 'w') as f:
+        for seq_name in seq_names:
+            seq_path = os.path.join(real_path, seq_name)
+            labels = sorted(glob.glob(seq_path + '/*.txt'))
+            image_path = seq_path.replace('labels_with_ids', 'images').replace('.txt', '.png')
+            images_exist = sorted(glob.glob(image_path + "/*.jpg"))
+            for label in labels:
+                image = label.replace('labels_with_ids', 'images').replace('.txt', '.jpg')
+                if image in images_exist:
+                    print(image[24:], file=f)
+    f.close()
+
+
 if __name__ == '__main__':
-    root = '/data/yfzhang/MOT/JDE'
-    gen_data_path_mot17_emb(root)
+    # root = '/data/yfzhang/MOT/JDE'
+    # gen_data_path_mot17_emb(root)
+    root = '/home/lzanella/datasets/'
+    gen_data_path_mt_train(root)
